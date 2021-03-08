@@ -7,7 +7,7 @@ It assumes an instructor will verbally explain a lot of the material.
 This material also assumes that you have already covered the basics including
 simple queries, index mappings, relevancy scoring, and custom analysers.
 
-See, for example, https://richarda2b.github.io/elasticsearch-intro-publish/
+See, for example, https://github.com/wsutina/intro-elasticsearch-training
 
 ## Topics
 
@@ -38,7 +38,7 @@ Requirements:
 There are scripts in the `scripts` directory that use docker-compose to create, stop and destroy an Elasticsearch + Kibana environment.
 
 If you have previously run a different version of Elasticsearch with these scripts,
-especially anything before version 6.6
+especially anything before version 7.10.2
 then it may be best to destroy your existing Elasticsearch data with `scripts/destroy`.
 
 Create an environment with:
