@@ -2,7 +2,7 @@ version: "2"
 
 services:
   elasticsearch1:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.5
     container_name: elasticsearch1
     environment:
      - cluster.name=docker-cluster
@@ -13,11 +13,12 @@ services:
      - xpack.monitoring.exporters.remote.host=monitor
      - discovery.seed_hosts=elasticsearch1,elasticsearch2,elasticsearch3
      - cluster.initial_master_nodes=elasticsearch1,elasticsearch2,elasticsearch3
+     - xpack.security.enabled=false
     ports:
       - "19200:9200"
 
   elasticsearch2:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.5
     container_name: elasticsearch2
     environment:
      - cluster.name=docker-cluster
@@ -28,11 +29,12 @@ services:
      - xpack.monitoring.exporters.remote.host=monitor
      - discovery.seed_hosts=elasticsearch1,elasticsearch2,elasticsearch3
      - cluster.initial_master_nodes=elasticsearch1,elasticsearch2,elasticsearch3
+     - xpack.security.enabled=false
     ports:
       - "29200:9200"
 
   elasticsearch3:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.5
     container_name: elasticsearch3
     environment:
      - cluster.name=docker-cluster
@@ -43,11 +45,12 @@ services:
      - xpack.monitoring.exporters.remote.host=monitor
      - discovery.seed_hosts=elasticsearch1,elasticsearch2,elasticsearch3
      - cluster.initial_master_nodes=elasticsearch1,elasticsearch2,elasticsearch3
+     - xpack.security.enabled=false
     ports:
       - "39200:9200"
 
   monitor:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.5
     container_name: monitor
     environment:
      - cluster.name=docker-monitor-cluster
@@ -56,11 +59,12 @@ services:
      - xpack.monitoring.collection.enabled=false
      - discovery.seed_hosts=monitor
      - cluster.initial_master_nodes=monitor
+     - xpack.security.enabled=false
     ports:
       - "9200:9200"
 
   kibana-devtools:
-    image: docker.elastic.co/kibana/kibana:7.10.2
+    image: docker.elastic.co/kibana/kibana:7.17.5
     container_name: kibana-devtools
     environment:
       ELASTICSEARCH_HOSTS: http://elasticsearch3:9200
@@ -68,7 +72,7 @@ services:
       - "15601:5601"
 
   kibana-dashboard:
-    image: docker.elastic.co/kibana/kibana:7.10.2
+    image: docker.elastic.co/kibana/kibana:7.17.5
     container_name: kibana-dashboard
     environment:
       ELASTICSEARCH_HOSTS: http://monitor:9200
